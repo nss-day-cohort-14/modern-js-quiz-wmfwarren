@@ -6,7 +6,7 @@ var weapons = require("./weapons.js");
 function populateDroids(playerNum){
 	for(let i = 0; i < droids.droidArray.length; i++){
 		let currentDroid = droids.droidArray[i];
-		$(`#droid__${playerNum}`).append(`<option value="${currentDroid.name}">${currentDroid.name}</option>`)
+		$(`#droid__${playerNum}`).append(`<option value="${currentDroid.name}">${currentDroid.name}</option>`);
 	}
 }
 
@@ -17,7 +17,7 @@ function populateWeapons(playerNum){
 		let currentWeaponName = currentWeapon.name;
 		currentWeaponName = currentWeaponName.charAt(0).toUpperCase() + currentWeaponName.slice(1);
 		currentWeaponName = currentWeaponName.split(/(?=[A-Z])/).join(" "); 
-		$(`#weapon__${playerNum}`).append(`<option value="${currentWeaponValue}">${currentWeaponName}</option>`)
+		$(`#weapon__${playerNum}`).append(`<option value="${currentWeaponValue}">${currentWeaponName}</option>`);
 	}
 }
 
