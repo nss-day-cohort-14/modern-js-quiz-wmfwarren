@@ -5,3 +5,7 @@
 .alert {
 	color: darkgreen;
 }
+
+.bold {
+	font-weight: 900;
+}

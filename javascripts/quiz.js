@@ -101,12 +101,6 @@ function dealDamage(attacker, defender){
 	return defender;
 }
 
-function deathColor(defender){
-	if(defender.hitPoints <= 0){
-
-	}
-}
-
 function initializer(){ //this function checks to make sure the weapons and droids are selected before an attack is made
 	if($("#droid__1").val() === "none" || $("#weapon__1").val() === "default"){
 		$(".log").prepend(`<p class="warning">Please select a droid and weapon for Player 1</p>`);
@@ -117,6 +111,19 @@ function initializer(){ //this function checks to make sure the weapons and droi
 	} else {
 		return true;
 	}
+}
+
+/////***Additional events***\\\\\
+$("#taunt__1").click((event) => {
+	tauntOpponent(event, playerOneDroid);
+});
+$("#taunt__2").click((event) => {
+	tauntOpponent(event, playerTwoDroid);
+});
+
+	///*Taunt function*\\\
+function tauntOpponent(event, playerDroid){
+	$(".log").prepend(`<p class="bold">${playerDroid.tagLine}</p>`);
 }
 
 

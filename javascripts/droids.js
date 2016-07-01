@@ -51,6 +51,14 @@ BB_8.description = "This lil' dude is the ultimate in gyroscopic-stabilization! 
 BB_11.description = "Don't let the name fool you, this knock-off BB-8 is a cut below the rest!";
 C3_P0.description = "So you think you can dodge? This droid has seen some stuff and some things but rarely gets shot!";
 
+HK_47.tagLine = "Would you like me to vaporize that, meatbag?";
+HK_51.tagLine = "Yes, Master.";
+R2_D2.tagLine = "Beep bleep beep boop!!!";
+R2_T9.tagLine = "Blop...";
+BB_8.tagLine = "Wheeeeee whirrrrrrrr beep bop!";
+BB_11.tagLine = "Blip blop bup, boop!";
+C3_P0.tagLine = "Oh my!";
+
 /////***Adding properties to droid instances***\\\\\
 
 var HitPointGenerator = function(min, max) {
@@ -99,5 +107,4 @@ C3_P0.weapon = weapons.taser;
 
 var droidArray = [];
 droidArray.push(HK_47, HK_51, R2_D2, R2_T9, BB_11, BB_8, C3_P0); 
-console.log("Droid Array", droidArray );
 module.exports = {droidArray};
