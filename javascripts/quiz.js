@@ -95,18 +95,19 @@ function evade(defender){
 function dealDamage(attacker, defender){
 	var damageAmount = Math.floor(Math.random() * (attacker.weapon.damageMax - attacker.weapon.damageMin) + attacker.weapon.damageMin);
 	var armor = (defender.damageReduction + defender.weapon.bonusDamageReduction);
-	if (damageAmount -  armor < 0){ //if the damage would yield a negative value floor it at 0
+	if (damageAmount -  armor < 0){ //if the damage would yield a negative value floor it at 1
 		defender.hitPoints -= 1;
 	} else {
 		defender.hitPoints -= damageAmount - armor;
 	}
 	if(defender.hitPoints < 1){
-		$(".log").prepend(`<p>${attacker.name} Wins!</p>
+		$(".log").prepend(`<h2 class="bold alert">${attacker.name} Wins!</h2>
 			<img id="eTuBrute" src="../imgs/hesDeadJim.jpg">`);
 		$("#attack__1").prop("disabled", true); //disable buttons to end the combat
 		$("#attack__2").prop("disabled", true);
 		$("#taunt__1").prop("disabled", true);
 		$("#taunt__2").prop("disabled", true);
+		$("#battle").prop("disabled", true);
 
 	}
 	return defender;
@@ -135,7 +136,9 @@ $("#taunt__2").click((event) => {
 
 	///*Taunt function*\\\
 function tauntOpponent(event, playerDroid){
-	$(".log").prepend(`<p class="bold">${playerDroid.tagLine}</p>`);
+	if(initializer()){
+		$(".log").prepend(`<p class="bold">${playerDroid.tagLine}</p>`);
+	}
 }
 
 	///*Run and automated fight*\\
@@ -147,7 +150,9 @@ function quickBattle(playerOne, playerTwo){
 	if(initializer()){
 		while(playerOne.hitPoints > 0 && playerTwo.hitPoints > 0){
 			attackOpponent(null, playerOne, playerTwo);
-			attackOpponent(null, playerTwo, playerOne);
+			if(playerTwoDroid.hitPoints > 0){ //do not execute the line below if you are dead
+				attackOpponent(null, playerTwo, playerOne);
+			}
 		}
 	}
 }
