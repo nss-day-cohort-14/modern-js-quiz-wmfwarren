@@ -17,7 +17,7 @@ $("#droid__1").change(function(event){ //droid player 1 selection
 		if(currentDroid.name === playerOneDroid){
 			playerOneDroid = currentDroid; //now this is an object
 			$(".log").prepend(`<p class="alert">Player One's droid, ${playerOneDroid.name}, has ${playerOneDroid.hitPoints} starting HP</p>`);
-			console.log("droid 1", playerOneDroid );
+			$(".log").prepend(`<p>${playerOneDroid.description}</p>`);
 		}
 	}
 });
@@ -28,7 +28,7 @@ $("#droid__2").change(function(event){ //droid player 2 selection
 		if(currentDroid.name === playerTwoDroid){
 			playerTwoDroid = currentDroid; //now this is an object
 			$(".log").prepend(`<p class="alert">Player Two's droid, ${playerTwoDroid.name}, has ${playerTwoDroid.hitPoints} starting HP</p>`);
-			console.log("droid 1", playerTwoDroid );
+			$(".log").prepend(`<p>${playerTwoDroid.description}</p>`);
 		}
 	}
 });
@@ -95,6 +95,9 @@ function evade(defender){
 function dealDamage(attacker, defender){
 	var damageAmount = Math.floor(Math.random() * (attacker.weapon.damageMax - attacker.weapon.damageMin) + attacker.weapon.damageMin);
 	defender.hitPoints -= damageAmount;
+	if(defender.hitPoints < 1){
+		$(".log").prepend(`<img id="eTuBrute" src="../imgs/hesDeadJim.jpg">`);
+	}
 	return defender;
 }
 
