@@ -1,7 +1,7 @@
 "use strict";
 
 var weapons = require("./weapons.js");
-console.log("weps", weapons );
+
 function Droid() {
 	this.alive = false;
 }
@@ -91,10 +91,10 @@ C3_P0.missChance = 25;
 //Damage reduction
 HK_51.damageReduction = 1;
 HK_47.damageReduction = 0;
-R2_D2.damageReduction = 5;
-R2_T9.damageReduction = 5;
-BB_8.damageReduction = 3;
-BB_11.damageReduction = 3;
+R2_D2.damageReduction = 3;
+R2_T9.damageReduction = 3;
+BB_8.damageReduction = 2;
+BB_11.damageReduction = 2;
 C3_P0.damageReduction = 0;
 //the base weapon
 HK_51.weapon = weapons.ionCannon;

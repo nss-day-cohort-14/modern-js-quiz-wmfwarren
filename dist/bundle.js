@@ -7,7 +7,7 @@ var weapons = require("./weapons.js");
 function populateDroids(playerNum){
 	for(let i = 0; i < droids.droidArray.length; i++){
 		let currentDroid = droids.droidArray[i];
-		$(`#droid__${playerNum}`).append(`<option value="${currentDroid.name}">${currentDroid.name}</option>`)
+		$(`#droid__${playerNum}`).append(`<option value="${currentDroid.name}">${currentDroid.name}</option>`);
 	}
 }
 
@@ -18,7 +18,7 @@ function populateWeapons(playerNum){
 		let currentWeaponName = currentWeapon.name;
 		currentWeaponName = currentWeaponName.charAt(0).toUpperCase() + currentWeaponName.slice(1);
 		currentWeaponName = currentWeaponName.split(/(?=[A-Z])/).join(" "); 
-		$(`#weapon__${playerNum}`).append(`<option value="${currentWeaponValue}">${currentWeaponName}</option>`)
+		$(`#weapon__${playerNum}`).append(`<option value="${currentWeaponValue}">${currentWeaponName}</option>`);
 	}
 }
 
@@ -32,7 +32,7 @@ module.exports = {populateDroids, populateWeapons};
 "use strict";
 
 var weapons = require("./weapons.js");
-console.log("weps", weapons );
+
 function Droid() {
 	this.alive = false;
 }
@@ -122,10 +122,10 @@ C3_P0.missChance = 25;
 //Damage reduction
 HK_51.damageReduction = 1;
 HK_47.damageReduction = 0;
-R2_D2.damageReduction = 5;
-R2_T9.damageReduction = 5;
-BB_8.damageReduction = 3;
-BB_11.damageReduction = 3;
+R2_D2.damageReduction = 3;
+R2_T9.damageReduction = 3;
+BB_8.damageReduction = 2;
+BB_11.damageReduction = 2;
 C3_P0.damageReduction = 0;
 //the base weapon
 HK_51.weapon = weapons.ionCannon;
@@ -237,9 +237,20 @@ function evade(defender){
 
 function dealDamage(attacker, defender){
 	var damageAmount = Math.floor(Math.random() * (attacker.weapon.damageMax - attacker.weapon.damageMin) + attacker.weapon.damageMin);
-	defender.hitPoints -= damageAmount;
+	var armor = (defender.damageReduction + defender.weapon.bonusDamageReduction);
+	if (damageAmount -  armor < 0){ //if the damage would yield a negative value floor it at 0
+		defender.hitPoints -= 1;
+	} else {
+		defender.hitPoints -= damageAmount - armor;
+	}
 	if(defender.hitPoints < 1){
-		$(".log").prepend(`<img id="eTuBrute" src="../imgs/hesDeadJim.jpg">`);
+		$(".log").prepend(`<p>${attacker.name} Wins!</p>
+			<img id="eTuBrute" src="../imgs/hesDeadJim.jpg">`);
+		$("#attack__1").prop("disabled", true); //disable buttons to end the combat
+		$("#attack__2").prop("disabled", true);
+		$("#taunt__1").prop("disabled", true);
+		$("#taunt__2").prop("disabled", true);
+
 	}
 	return defender;
 }
@@ -257,6 +268,7 @@ function initializer(){ //this function checks to make sure the weapons and droi
 }
 
 /////***Additional events***\\\\\
+	///*Taunting*\\\
 $("#taunt__1").click((event) => {
 	tauntOpponent(event, playerOneDroid);
 });
@@ -269,7 +281,19 @@ function tauntOpponent(event, playerDroid){
 	$(".log").prepend(`<p class="bold">${playerDroid.tagLine}</p>`);
 }
 
-
+	///*Run and automated fight*\\
+$("#battle").click((event) => {
+	quickBattle(playerOneDroid, playerTwoDroid);
+});
+	///*Quick Battle Function*\\\
+function quickBattle(playerOne, playerTwo){
+	if(initializer()){
+		while(playerOne.hitPoints > 0 && playerTwo.hitPoints > 0){
+			attackOpponent(null, playerOne, playerTwo);
+			attackOpponent(null, playerTwo, playerOne);
+		}
+	}
+}
 
 },{"./DOMGenerator.js":1,"./droids.js":2,"./weapons.js":4}],4:[function(require,module,exports){
 "use strict";

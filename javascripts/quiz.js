@@ -96,7 +96,7 @@ function dealDamage(attacker, defender){
 	var damageAmount = Math.floor(Math.random() * (attacker.weapon.damageMax - attacker.weapon.damageMin) + attacker.weapon.damageMin);
 	var armor = (defender.damageReduction + defender.weapon.bonusDamageReduction);
 	if (damageAmount -  armor < 0){ //if the damage would yield a negative value floor it at 0
-		defender.hitPoints -= 0;
+		defender.hitPoints -= 1;
 	} else {
 		defender.hitPoints -= damageAmount - armor;
 	}
@@ -142,7 +142,7 @@ function tauntOpponent(event, playerDroid){
 $("#battle").click((event) => {
 	quickBattle(playerOneDroid, playerTwoDroid);
 });
-
+	///*Quick Battle Function*\\\
 function quickBattle(playerOne, playerTwo){
 	if(initializer()){
 		while(playerOne.hitPoints > 0 && playerTwo.hitPoints > 0){
