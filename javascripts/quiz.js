@@ -2,7 +2,7 @@
 
 var droids = require("./droids.js");
 var weapons = require("./weapons.js");
-console.log(droids);
+var DOMGenerator = require("./DOMGenerator.js");
 
 var playerOneDroid = null;
 var playerTwoDroid = null;
@@ -16,7 +16,7 @@ $("#droid__1").change(function(event){ //droid player 1 selection
 		let currentDroid = droids.droidArray[i];
 		if(currentDroid.name === playerOneDroid){
 			playerOneDroid = currentDroid; //now this is an object
-			$(".log").prepend(`<p>Player One's droid, ${playerOneDroid.name}, has ${playerOneDroid.hitPoints} starting HP</p>`);
+			$(".log").prepend(`<p class="alert">Player One's droid, ${playerOneDroid.name}, has ${playerOneDroid.hitPoints} starting HP</p>`);
 			console.log("droid 1", playerOneDroid );
 		}
 	}
@@ -27,7 +27,7 @@ $("#droid__2").change(function(event){ //droid player 2 selection
 		let currentDroid = droids.droidArray[i];
 		if(currentDroid.name === playerTwoDroid){
 			playerTwoDroid = currentDroid; //now this is an object
-			$(".log").prepend(`<p>Player Two's droid, ${playerTwoDroid.name}, has ${playerTwoDroid.hitPoints} starting HP</p>`);
+			$(".log").prepend(`<p class="alert">Player Two's droid, ${playerTwoDroid.name}, has ${playerTwoDroid.hitPoints} starting HP</p>`);
 			console.log("droid 1", playerTwoDroid );
 		}
 	}
@@ -46,8 +46,6 @@ function weaponSelector(event, player){
 			let currentWeapon = weapons.weaponsArray[i];
 			if(event.target.value === currentWeapon.name){
 				player.weapon = currentWeapon;
-
-				console.log("droid with weapon", player );
 			}
 		}
 	}
@@ -64,11 +62,13 @@ $("#attack__2").click((event) => {
 
 	///*Attack functions*\\\
 function attackOpponent(event, attacker, defender){
-	if(hitOrMissAttack(attacker) && evade(defender)){
-		dealDamage(attacker, defender);
-		$(".log").prepend(`<p>${defender.name} now has ${defender.hitPoints} after a BRUTAL attack by ${attacker.name}'s ${attacker.weapon.name}.</p>`);
-	} else {
-		$(".log").prepend(`<p>That's a miss!</p>`);
+	if(initializer()){
+		if(hitOrMissAttack(attacker) && evade(defender)){
+			dealDamage(attacker, defender);
+			$(".log").prepend(`<p>${defender.name} now has ${defender.hitPoints} after a BRUTAL attack by ${attacker.name}'s ${attacker.weapon.name}.</p>`);
+		} else {
+			$(".log").prepend(`<p class="warning">That's a miss!</p>`);
+		}
 	}
 }
 	///*Helper attack functions*\\\
@@ -98,6 +98,22 @@ function dealDamage(attacker, defender){
 	return defender;
 }
 
+function deathColor(defender){
+	if(defender.hitPoints <= 0){
 
+	}
+}
+
+function initializer(){ //this function checks to make sure the weapons and droids are selected before an attack is made
+	if($("#droid__1").val() === "none" || $("#weapon__1").val() === "default"){
+		$(".log").prepend(`<p class="warning">Please select a droid and weapon for Player 1</p>`);
+		return false;
+	} else if ($("#droid__2").val() === "none" || $("#weapon__2").val() === "default"){
+		$(".log").prepend(`<p class="warning">Please select a droid and weapon for Player 2</p>`);
+		return false;
+	} else {
+		return true;
+	}
+}
 
 

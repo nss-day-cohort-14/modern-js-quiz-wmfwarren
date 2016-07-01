@@ -100,4 +100,4 @@ BB_11.weapon = weapons.taser;
 
 var droidArray = [];
 droidArray.push(HK_47, HK_51, R2_D2, R2_T9, BB_11, BB_8); 
-module.exports = {droidArray, getBB11, getBB8, getHK51, getHK47, getR2T9, getR2D2};
+module.exports = {droidArray};
