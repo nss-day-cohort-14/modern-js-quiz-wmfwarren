@@ -66,7 +66,7 @@ $("#attack__2").click((event) => {
 function attackOpponent(event, attacker, defender){
 	if(hitOrMissAttack(attacker) && evade(defender)){
 		dealDamage(attacker, defender);
-		$(".log").prepend(`<p>${defender.name} now has ${defender.hitPoints} after a BRUTAL attack by ${attacker.name}</p>`);
+		$(".log").prepend(`<p>${defender.name} now has ${defender.hitPoints} after a BRUTAL attack by ${attacker.name}'s ${attacker.weapon.name}.</p>`);
 	} else {
 		$(".log").prepend(`<p>That's a miss!</p>`);
 	}
