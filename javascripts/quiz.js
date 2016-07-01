@@ -101,7 +101,13 @@ function dealDamage(attacker, defender){
 		defender.hitPoints -= damageAmount - armor;
 	}
 	if(defender.hitPoints < 1){
-		$(".log").prepend(`<img id="eTuBrute" src="../imgs/hesDeadJim.jpg">`);
+		$(".log").prepend(`<p>${attacker.name} Wins!</p>
+			<img id="eTuBrute" src="../imgs/hesDeadJim.jpg">`);
+		$("#attack__1").prop("disabled", true); //disable buttons to end the combat
+		$("#attack__2").prop("disabled", true);
+		$("#taunt__1").prop("disabled", true);
+		$("#taunt__2").prop("disabled", true);
+
 	}
 	return defender;
 }
@@ -119,6 +125,7 @@ function initializer(){ //this function checks to make sure the weapons and droi
 }
 
 /////***Additional events***\\\\\
+	///*Taunting*\\\
 $("#taunt__1").click((event) => {
 	tauntOpponent(event, playerOneDroid);
 });
