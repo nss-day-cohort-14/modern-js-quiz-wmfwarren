@@ -138,4 +138,16 @@ function tauntOpponent(event, playerDroid){
 	$(".log").prepend(`<p class="bold">${playerDroid.tagLine}</p>`);
 }
 
+	///*Run and automated fight*\\
+$("#battle").click((event) => {
+	quickBattle(playerOneDroid, playerTwoDroid);
+});
 
+function quickBattle(playerOne, playerTwo){
+	if(initializer()){
+		while(playerOne.hitPoints > 0 && playerTwo.hitPoints > 0){
+			attackOpponent(null, playerOne, playerTwo);
+			attackOpponent(null, playerTwo, playerOne);
+		}
+	}
+}
