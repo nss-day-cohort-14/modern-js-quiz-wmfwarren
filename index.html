@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Robot Battle!!!!</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <!-- below are the input fields for player 1 and 2 -->
+  <playerZone id="player__1" class="floatLeft player">
+    <h3>Player 1</h3>
+    <div class="hitPoints" id="droidHP__1">
+      
+    </div>
+    <!-- Droid Selection -->
+    <h4>Select your droid!</h4>
+    <select name="Player__1" id="droid__1">
+      <option value="none">Pick a droid</option>
+      <!-- the rest of the options are populated in JS -->
+    </select>
+    <!-- weapon selection -->
+    <h4>Select a weapon!</h4>
+    <select id="weapon__1">
+      <option value="default">Pick a Weapon</option>
+      
+    </select>
+    <!-- below is the log -->
+  <button type="Attack" id="attack__1">Attack!</button>
+  <button type="Taunt" id="taunt__1">Taunt!</button>
+  </playerZone>
+  <playerZone id="player__2" class="floatLeft player">
+    <h3>Player 2</h3>
+    <div class="hitPoints" id="droidHP__2">
+      
+    </div>
+    <!-- Droid selection -->
+    <h4>Select your droid!</h4>
+    <select name="Player__2" id="droid__2">
+      <option value="none">Pick a droid</option>
+      <!-- the rest of the options are populated in JS -->
+
+    </select>
+    <!-- weapon selection -->
+    <h4>Select a weapon!</h4>
+    <select id="weapon__2">
+      <option value="default">Default</option>
+    </select>
+  <!-- below is the log -->
+  <button type="Attack" id="attack__2">Attack!</button>
+  <button type="Taunt" id="taunt__2">Taunt!</button>
+
+  </playerZone>
+  <div><button type="QuickBattle" id="battle" class="clear">Quick Battle</button></div>
+  <combatLog class="log clear">
+    
+  </combatLog>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="dist/bundle.js"></script>
+</body>
+</html>

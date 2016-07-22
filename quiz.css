@@ -1,0 +1,30 @@
+.warning {
+	color: red;
+}
+
+.alert {
+	color: darkgreen;
+}
+
+.bold {
+	font-weight: 900;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+#player__1 {
+	background-color: lightblue;
+}
+#player__2 {
+	background-color: lightgreen;
+}
+
+.block {
+	display: block;
+}
