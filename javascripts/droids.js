@@ -4,25 +4,54 @@ var weapons = require("./weapons.js");
 
 function Droid() {
 	this.alive = false;
+	this.weapon = weapons.taser; //placeholder weapon
 }
 /////***Types of Droids***\\\\\
 function HKUnit() {
+	this.name = null;
+	this.description = null;
+	this.tagLine = null;
+	this.hitPoints = null;
 	this.type = "Hunter-Killer";
+	this.evasionChance = 2;
+	this.missChance = 5;
+	this.damageReduction = 2;
 }
 HKUnit.prototype = new Droid();
 
 function RTwoUnit() {
+	this.name = null;
+	this.description = null;
+	this.tagLine = null;
+	this.hitPoints = null;
 	this.type = "Astromech";
+	this.evasionChance = 10;
+	this.missChance = 10;
+	this.damageReduction = 1;
 }
 RTwoUnit.prototype = new Droid();
 
 function BBUnit() {
+	this.name = null;
+	this.description = null;
+	this.tagLine = null;
+	this.hitPoints = null;
 	this.type = "Astromech";
+	this.evasionChance = 15;
+	this.missChance = 15;
+	this.damageReduction = 2;
 }
 BBUnit.prototype = new Droid();
 
 function ProtocolUnit(){
+	this.name = null;
+	this.description = null;
+	this.tagLine = null;
+	this.hitPoints = null;
 	this.type = "Protocol";
+	this.evasionChance = 35;
+	this.missChance = 25;
+	this.damageReduction = 0;
 }
 ProtocolUnit.prototype = new Droid();
 /////***Instances of Droids***\\\\\
@@ -72,38 +101,7 @@ R2_D2.hitPoints = HitPointGenerator(90, 100);
 BB_8.hitPoints = HitPointGenerator(70, 95);
 BB_11.hitPoints = HitPointGenerator(75, 100);
 C3_P0.hitPoints = HitPointGenerator(30, 60);
-//evasion chance in integer %
-HK_51.evasionChance = 1;
-HK_47.evasionChance = 1;
-R2_D2.evasionChance = 10;
-R2_T9.evasionChance = 10;
-BB_8.evasionChance = 20;
-BB_11.evasionChance = 20;
-C3_P0.evasionChance = 60;
-//miss chance in integer %
-HK_51.missChance = 0;
-HK_47.missChance = 5;
-R2_D2.missChance = 10;
-R2_T9.missChance = 10;
-BB_8.missChance = 15;
-BB_11.missChance = 15;
-C3_P0.missChance = 25;
-//Damage reduction
-HK_51.damageReduction = 1;
-HK_47.damageReduction = 0;
-R2_D2.damageReduction = 3;
-R2_T9.damageReduction = 3;
-BB_8.damageReduction = 2;
-BB_11.damageReduction = 2;
-C3_P0.damageReduction = 0;
-//the base weapon
-HK_51.weapon = weapons.ionCannon;
-HK_47.weapon = weapons.disentigrationRay;
-R2_D2.weapon = weapons.taser;
-R2_T9.weapon = weapons.vibroblade;
-BB_8.weapon = weapons.lightsaberCheeseKnife;
-BB_11.weapon = weapons.taser;
-C3_P0.weapon = weapons.taser;
+
 
 var droidArray = [];
 droidArray.push(HK_47, HK_51, R2_D2, R2_T9, BB_11, BB_8, C3_P0); 
