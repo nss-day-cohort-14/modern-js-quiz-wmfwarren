@@ -3,7 +3,7 @@
 const test = require("tape");
 const droids = require("../droids.js");
 const weps = require("../weapons.js");
-const quiz = require("../quiz.js");
+// const quiz = require("../quiz.js");
 
 for (let i = 0; i < droids.droidArray.length ; i++){
 	test("Droids: ", function (t) {
